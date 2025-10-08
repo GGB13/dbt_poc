@@ -20,5 +20,5 @@ select
   activity_date,
   count(distinct user_id) as active_users
 from activity
-group by cohort_week, activity_date
+group by 1,2
 order by cohort_week, activity_date
