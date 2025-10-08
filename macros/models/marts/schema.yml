@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: user_activity
+    description: Daily user activity aggregated from events
+    columns:
+      - name: user_id
+        description: User ID
+        tests:
+          - not_null
+      - name: activity_date
+        description: Date of activity
+      - name: events_count
+        description: Number of events by the user that day
+      - name: unique_event_types
+        description: Number of distinct event types
+
+  - name: cohort_analysis
+    description: Tracks active users by signup cohort week
+    columns:
+      - name: cohort_week
+        description: Week the user signed up
+      - name: activity_date
+        description: Day of user activity
+      - name: active_users
+        description: Number of active users in that cohort on that day
+
+  - name: customer_ltv
+    description: Lifetime value (LTV) of users over a 90-day window
+    columns:
+      - name: user_id
+        description: User ID
+        tests:
+          - not_null
+      - name: ltv_90d
+        description: Calculated LTV over a 90-day window
+
+  - name: user_segments
+    description: Segmentation of users based on their LTV and cohort
+    columns:
+      - name: user_id
+        description: User ID
+        tests:
+          - not_null
+      - name: cohort_week
+        description: The week the user signed up
+      - name: ltv_90d
+        description: Calculated lifetime value
+      - name: segment
+        description: Segment label (High, Medium, Low)
